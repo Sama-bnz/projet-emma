@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% block title %}
+        <title>Acceuil</title>
+    {% endblock %}
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<header>
+    <img class="logo" src="{{ asset('assets/img/logo_emma.jpg') }}">
+    <a href="">Connexion</a>
+    <nav>
+        <ul>
+            <li class="nav-items"><a href="{{ path ('home')}}">Accueil</a></li>
+            <li><a href="">A propos</a></li>
+            <li class="nav-items"><a href="">Prestation</a></li>
+            <li><a href="{{ path('admin_contact')}}">Contact</a></li>
+            <li class="nav-items"><a href="{{ path('admin_reservation') }}">Prendre rendez-vous</a></li>
+            <li class="nav-items"><a href="{{ path('admin_liste_reservation') }}">Liste des rendez-vous</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+
+    {% block main %}
+    {% endblock %}
+</main>
+<footer>
+    {% block footer %}
+    {% endblock %}
+</footer>
+{% block js %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+{% endblock %}
+</body>
+</html>
