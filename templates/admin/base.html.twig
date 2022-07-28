@@ -18,7 +18,7 @@
     <nav>
         <ul>
             <li class="nav-items"><a href="{{ path ('home')}}">Accueil</a></li>
-            <li><a href="">A propos</a></li>
+            <li><a href="{{ path('admin_apropos') }}">A propos</a></li>
             <li class="nav-items"><a href="">Prestation</a></li>
             <li><a href="{{ path('admin_contact')}}">Contact</a></li>
             <li class="nav-items"><a href="{{ path('admin_reservation') }}">Prendre rendez-vous</a></li>
@@ -29,12 +29,11 @@
 
 <main>
 
-    {% block main %}
+    {% block body %}
     {% endblock %}
 </main>
 <footer>
-    {% block footer %}
-    {% endblock %}
+    <img class="logo" src="{{ asset('assets/img/logo_emma.jpg') }}">
 </footer>
 {% block js %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
