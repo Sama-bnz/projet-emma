@@ -15,11 +15,11 @@ class AdminPrestationController extends AbstractController
     /**
      * @Route("/admin/list/prestations", name="admin_list_prestations")
      */
-    public function listPrestation(PrestationRepository $prestationRepository)
+    public function listPrestation(PrestationRepository $categoryRepository)
     {
-        $prestations =$prestationRepository -> findAll();
+        $categories =$categoryRepository -> findAll();
         return $this->render('admin/list_prestations.html.twig',[
-            'prestations'=>$prestations
+            'categories'=>$categories
         ]);
     }
 

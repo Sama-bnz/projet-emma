@@ -23,11 +23,12 @@
 {% endblock %}
 
 {% block body %}
-    {% for prestation in prestations %}
+    {% for category in categories %}
     <article>
-        <h1>{{ prestation.name }}</h1>
+        <h1>{{ category.prestation.name }}</h1>
+        <h3>{{ prestation.name }}</h3>
         <p>{{ prestation.description }}</p>
-        <p>{{ prestation.duringtime|date('Y-m-d') }}</p>
+        <p>{{ prestation.duringtime|date('H:i') }}</p>
         <p>{{ prestation.price }}</p>
 {#        <a class="lien" href="{{ path('admin_show_book',{'id':book.id}) }}">En savoir plus sur le livre</a>#}
 {#        #}
@@ -36,4 +37,5 @@
 {#        <a class="lien" href="{{ path ('admin_delete_book',{'id':book.id })}}">Voulez-vous supprimé ce livre? </a>#}
 
     </article>
+    {% endfor %}
 {% endblock %}
