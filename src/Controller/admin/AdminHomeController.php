@@ -7,14 +7,14 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminHomeController extends AbstractController
 {
-    //Je créer une route home qui sera ma page d'acceuil
+    //Im creating my HomePage
     /**
      * @Route("/", name="home")
      */
-    //Je créer la fonction home
+    //Creating home function
     public function home()
     {
-        //Je renvoi vers mon twig
+        //Return to my twig
         return $this->render('home.html.twig');
     }
 }

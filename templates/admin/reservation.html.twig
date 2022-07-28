@@ -4,7 +4,23 @@
     <title>Prendre rendez-vous avec moi</title>
 {% endblock %}
 
-{% block main %}
+{% block header %}
+    <header>
+        <img class="logo" src="{{ asset('assets/img/logo_emma.jpg') }}">
+        <a href="">Connexion</a>
+        <nav>
+            <ul>
+                <li class="nav-items"><a href="{{ path ('home')}}">Accueil</a></li>
+                <li><a href="{{ path('admin_apropos') }}">A propos</a></li>
+                <li class="nav-items"><a href="">Prestation</a></li>
+                    <li><a href="{{ path('admin_contact')}}">Contact</a></li>
+                <li class="nav-items"><a href="{{ path('admin_liste_reservation') }}">Liste des rendez-vous</a></li>
+            </ul>
+        </nav>
+    </header>
+{% endblock %}
+
+{% block body %}
 <h1>Prendre rendez-vous</h1>
     <br>
     <br>

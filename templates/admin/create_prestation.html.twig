@@ -1,0 +1,55 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}
+<title>Creation de prestation</title>
+<h1>Créer une prestation</h1>
+{% endblock %}
+
+
+{% block header %}
+    <header>
+        <img class="logo" src="{{ asset('assets/img/logo_emma.jpg') }}">
+        <a href="">Connexion</a>
+        <a href="{{ path('admin_create_prestation') }}">Créer une prestation</a>
+
+        <nav>
+            <ul>
+                <li class="nav-items"><a href="{{ path ('home')}}">Accueil</a></li>
+                <li><a href="{{ path('admin_apropos') }}">A propos</a></li>
+                <li class="nav-items"><a href="">Prestation</a></li>
+                <li><a href="{{ path('admin_contact')}}">Contact</a></li>
+                <li class="nav-items"><a href="{{ path('admin_reservation') }}">Prendre rendez-vous</a></li>
+                <li class="nav-items"><a href="{{ path('admin_liste_reservation') }}">Liste des rendez-vous</a></li>
+            </ul>
+        </nav>
+    </header>
+{% endblock %}
+
+{% block body %}
+<div class="form-group">
+    {#        {{ form(form) }}#}
+    {{ form_start(form) }}
+
+    {{ form_label(form.name, 'Nom de la prestation',{'label_attr':{'class': 'form-label' }}) }}
+    {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+    {{ form_errors(form.name) }}
+
+    {{ form_label(form.description, 'Description',{'label_attr':{'class': 'form-label'}}) }}
+    {{ form_widget(form.description, {'attr':{'class': 'form-control'}}) }}
+    {{ form_errors(form.description) }}
+
+    {{ form_label(form.duringtime, 'Durée',{'label_attr':{'class': 'form-label'}}) }}
+    {{ form_widget(form.duringtime, {'attr':{'class': 'form-control'}}) }}
+    {{ form_errors(form.duringtime) }}
+
+    {{ form_label(form.price, 'Prix',{'label_attr':{'class': 'form-label'}}) }}
+    {{ form_widget(form.price, {'attr':{'class': 'form-control'}}) }}
+    {{ form_errors(form.price) }}
+
+    {{ form_label(form.categoryPrestation, 'Prestation principale',{'label_attr':{'class': 'form-label'}}) }}
+    {{ form_widget(form.categoryPrestation, {'attr':{'class': 'form-control'}}) }}
+    {{ form_errors(form.categoryPrestation) }}
+
+    {{ form_widget(form.valider, {'attr':{'class': 'btn btn-primary'}}) }}
+    {{ form_end(form) }}
+{% endblock %}

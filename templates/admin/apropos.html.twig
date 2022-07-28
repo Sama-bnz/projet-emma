@@ -5,6 +5,22 @@
     <h1>Qui suis je</h1>
 {% endblock %}
 
+{% block header %}
+    <header>
+        <img class="logo" src="{{ asset('assets/img/logo_emma.jpg') }}">
+        <a href="">Connexion</a>
+        <nav>
+            <ul>
+                <li class="nav-items"><a href="{{ path ('home')}}">Accueil</a></li>
+                <li class="nav-items"><a href="">Prestation</a></li>
+                <li><a href="{{ path('admin_contact')}}">Contact</a></li>
+                <li class="nav-items"><a href="{{ path('admin_reservation') }}">Prendre rendez-vous</a></li>
+                <li class="nav-items"><a href="{{ path('admin_liste_reservation') }}">Liste des rendez-vous</a></li>
+            </ul>
+        </nav>
+    </header>
+{% endblock %}
+
 {% block body %}
 <p>Possédant un BEP ainsi qu'un bac professionnel esthétique  j'ai décider de me lancer en solo afin d'appliquer des tarifs préférentiels et pour créer un lien fort avec ma clientèle.
     Je ne propose mes prestation qu'a une clientèle féminine</p>

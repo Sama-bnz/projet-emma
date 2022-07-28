@@ -1,7 +1,7 @@
 {% extends 'admin/base.html.twig' %}
 
 {% block title %}
-<title>Contact</title>
+    <title>Les Prestations</title>
 {% endblock %}
 
 {% block header %}
@@ -14,7 +14,7 @@
             <ul>
                 <li class="nav-items"><a href="{{ path ('home')}}">Accueil</a></li>
                 <li><a href="{{ path('admin_apropos') }}">A propos</a></li>
-                <li class="nav-items"><a href="">Prestation</a></li>
+                <li><a href="{{ path('admin_contact')}}">Contact</a></li>
                 <li class="nav-items"><a href="{{ path('admin_reservation') }}">Prendre rendez-vous</a></li>
                 <li class="nav-items"><a href="{{ path('admin_liste_reservation') }}">Liste des rendez-vous</a></li>
             </ul>
@@ -23,18 +23,17 @@
 {% endblock %}
 
 {% block body %}
+    {% for prestation in prestations %}
+    <article>
+        <h1>{{ prestation.name }}</h1>
+        <p>{{ prestation.description }}</p>
+        <p>{{ prestation.duringtime|date('Y-m-d') }}</p>
+        <p>{{ prestation.price }}</p>
+{#        <a class="lien" href="{{ path('admin_show_book',{'id':book.id}) }}">En savoir plus sur le livre</a>#}
+{#        #}
+{#        <a class="lien" href="{{ path ('admin_update_book',{'id':book.id })}}">Voulez-vous modifié les données de ce livre?? </a>#}
+{#       #}
+{#        <a class="lien" href="{{ path ('admin_delete_book',{'id':book.id })}}">Voulez-vous supprimé ce livre? </a>#}
 
-<h1>Emplacement</h1>
-<img class="image" src="{{ asset('assets/img/emplacement_emma.png') }}">
-<br>
-<br>
-    <h1>Contactez moi par téléphone</h1>
-    <p>0695581475</p>
-    <br>
-    <br>
-    <h1>Contactez moi par mail</h1>
-    <p>Emma.Institut@gmail.com</p>
-
-
-
+    </article>
 {% endblock %}
