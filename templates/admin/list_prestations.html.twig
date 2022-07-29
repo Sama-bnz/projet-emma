@@ -24,12 +24,17 @@
 
 {% block body %}
     {% for category in categories %}
+
+        {{ category.name }}
+
+        {% for type in category.type %}
+            <h3>{{ type.name }}</h3>
+            <p>{{ type.description }}</p>
+            <p>{{ type.duringtime|date('H:i') }}</p>
+            <p>{{ type.price }}</p>
+        {% endfor %}
     <article>
-        <h1>{{ category.prestation.name }}</h1>
-        <h3>{{ prestation.name }}</h3>
-        <p>{{ prestation.description }}</p>
-        <p>{{ prestation.duringtime|date('H:i') }}</p>
-        <p>{{ prestation.price }}</p>
+
 {#        <a class="lien" href="{{ path('admin_show_book',{'id':book.id}) }}">En savoir plus sur le livre</a>#}
 {#        #}
 {#        <a class="lien" href="{{ path ('admin_update_book',{'id':book.id })}}">Voulez-vous modifié les données de ce livre?? </a>#}

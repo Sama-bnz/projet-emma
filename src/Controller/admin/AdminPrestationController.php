@@ -2,8 +2,10 @@
 
 namespace App\Controller\admin;
 
+use App\Entity\CategoryPrestation;
 use App\Entity\Prestation;
 use App\Form\PrestationType;
+use App\Repository\CategoryPrestationRepository;
 use App\Repository\PrestationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,7 +17,7 @@ class AdminPrestationController extends AbstractController
     /**
      * @Route("/admin/list/prestations", name="admin_list_prestations")
      */
-    public function listPrestation(PrestationRepository $categoryRepository)
+    public function listPrestation(CategoryPrestationRepository $categoryRepository)
     {
         $categories =$categoryRepository -> findAll();
         return $this->render('admin/list_prestations.html.twig',[
