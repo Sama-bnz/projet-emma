@@ -41,6 +41,9 @@ class Reservation
     #[ORM\Column(length: 10)]
     private ?string $telephone = null;
 
+    #[ORM\Column(length: 30)]
+    private ?string $statut = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -159,4 +162,22 @@ class Reservation
 
         return $this;
     }
+
+    /**
+     * @return string|null
+     */
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    /**
+     * @param string|null $statut
+     */
+    public function setStatut(?string $statut): void
+    {
+        $this->statut = $statut;
+    }
+
+
 }

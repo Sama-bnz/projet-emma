@@ -1,0 +1,24 @@
+{% extends 'admin/base.html.twig' %}
+
+{#{% block title %}#}
+{#    <title>{{ category.type }}</title>#}
+{#{% endblock %}#}
+
+{% block body %}
+
+    <article>
+        <h1 class="titre">{{ category.name }}</h1>
+        {% for type in category.type %}
+                <p>{{ type.name }}</p>
+                <p>{{ type.description }}</p>
+                <p>{{ type.duringtime|date('H:i') }}</p>
+                <p>{{ type.price }}</p>
+        {% endfor %}
+
+
+{#        <a href="{{ path('admin_list_prestations') }}">Retour aux Prestations</a>#}
+        <br>
+{#        <a href="{{ path ('admin_delete_book',{'id':book.id })}}">Voulez-vous supprimé ce livre? </a>#}
+
+    </article>
+{% endblock %}

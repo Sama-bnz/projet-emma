@@ -25,7 +25,7 @@
 {% block body %}
     {% for category in categories %}
 
-        {{ category.name }}
+        <h1>{{ category.name }}</h1>
 
         {% for type in category.type %}
             <h3>{{ type.name }}</h3>
@@ -33,13 +33,15 @@
             <p>{{ type.duringtime|date('H:i') }}</p>
             <p>{{ type.price }}</p>
         {% endfor %}
-    <article>
+        <article>
+            <a href="{{ path('admin_show_prestation',{'id':category.id}) }}">En savoir plus sur la prestation</a>
+            <br>
 
-{#        <a class="lien" href="{{ path('admin_show_book',{'id':book.id}) }}">En savoir plus sur le livre</a>#}
+            {#        <a class="lien" href="{{ path('admin_show_book',{'id':book.id}) }}">En savoir plus sur le livre</a>#}
 {#        #}
 {#        <a class="lien" href="{{ path ('admin_update_book',{'id':book.id })}}">Voulez-vous modifié les données de ce livre?? </a>#}
 {#       #}
-{#        <a class="lien" href="{{ path ('admin_delete_book',{'id':book.id })}}">Voulez-vous supprimé ce livre? </a>#}
+        <a class="lien" href="{{ path ('admin_delete_prestation',{'id':category.id })}}">Voulez-vous supprimé cette prestation ? </a>
 
     </article>
     {% endfor %}

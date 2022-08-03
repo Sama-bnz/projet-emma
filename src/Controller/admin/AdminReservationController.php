@@ -43,6 +43,8 @@ class AdminReservationController extends AbstractController
 
         //Si le formulaire à été posté et que les données sont valide
         if ($form->isSubmitted() && $form->isValid()) {
+            //je recupere le formulaire et je lui ajoute le statut en attente en BDD
+            $reservation ->setStatut("en attente");
             $entityManager->persist($reservation);
             $entityManager->flush();
         }
