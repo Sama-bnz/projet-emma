@@ -5,16 +5,16 @@
 {% endblock %}
 
 {% block header %}
-    <header>
-        <img class="logo" src="{{ asset('assets/img/logo_emma.jpg') }}">
-        <a href="">Connexion</a>
+    <header class="hautpage">
+        <a href="{{ path ('home')}}"> <img class="logo-header"  src="{{ asset('assets/img/logo_emma.jpg') }}" ></a>
+        <a class="connexion" href="">Connexion</a>
         <a href="{{ path('admin_create_prestation') }}">Créer une prestation</a>
 
-        <nav>
-            <ul>
+        <nav class="header-top">
+            <ul class="nav-items">
                 <li class="nav-items"><a href="{{ path ('home')}}">Accueil</a></li>
-                <li><a href="{{ path('admin_apropos') }}">A propos</a></li>
-                <li><a href="{{ path('admin_contact')}}">Contact</a></li>
+                <li class="nav-items"><a href="{{ path('admin_apropos') }}">A propos</a></li>
+                <li class="nav-items"><a href="{{ path('admin_contact')}}">Contact</a></li>
                 <li class="nav-items"><a href="{{ path('admin_reservation') }}">Prendre rendez-vous</a></li>
                 <li class="nav-items"><a href="{{ path('admin_liste_reservation') }}">Liste des rendez-vous</a></li>
             </ul>
@@ -36,11 +36,8 @@
         <article>
             <a href="{{ path('admin_show_prestation',{'id':category.id}) }}">En savoir plus sur la prestation</a>
             <br>
-
-            {#        <a class="lien" href="{{ path('admin_show_book',{'id':book.id}) }}">En savoir plus sur le livre</a>#}
-{#        #}
-{#        <a class="lien" href="{{ path ('admin_update_book',{'id':book.id })}}">Voulez-vous modifié les données de ce livre?? </a>#}
-{#       #}
+        <a class="lien" href="{{ path ('admin_update_prestation',{'id':category.id })}}">Voulez-vous modifié cette prestation? </a>
+            <br>
         <a class="lien" href="{{ path ('admin_delete_prestation',{'id':category.id })}}">Voulez-vous supprimé cette prestation ? </a>
 
     </article>

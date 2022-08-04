@@ -5,15 +5,16 @@
 {% endblock %}
 
 {% block header %}
-    <header>
-        <img class="logo" src="{{ asset('assets/img/logo_emma.jpg') }}">
-        <a href="">Connexion</a>
-        <nav>
-            <ul>
+    <header class="hautpage">
+        <a href="{{ path ('home')}}"> <img class="logo-header"  src="{{ asset('assets/img/logo_emma.jpg') }}" ></a>
+        <a class="connexion" href="">Connexion</a>
+
+        <nav class="header-top">
+            <ul class="nav-items">
                 <li class="nav-items"><a href="{{ path ('home')}}">Accueil</a></li>
-                <li><a href="{{ path('admin_apropos') }}">A propos</a></li>
-                <li class="nav-items"><a href="">Prestation</a></li>
-                    <li><a href="{{ path('admin_contact')}}">Contact</a></li>
+                <li class="nav-items"><a href="{{ path('admin_apropos') }}">A propos</a></li>
+                <li class="nav-items"><a href="{{ path('admin_list_prestations') }}">Prestation</a></li>
+                <li class="nav-items"><a href="{{ path('admin_contact')}}">Contact</a></li>
                 <li class="nav-items"><a href="{{ path('admin_liste_reservation') }}">Liste des rendez-vous</a></li>
             </ul>
         </nav>

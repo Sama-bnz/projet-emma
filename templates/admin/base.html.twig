@@ -13,18 +13,18 @@
 </head>
 <body>
 {% block header %}
-<header>
-    <img class="logo" src="{{ asset('assets/img/logo_emma.jpg') }}">
-    <a href="">Connexion</a>
+<header class="hautpage">
+    <a href="{{ path ('home')}}"> <img class="logo-header"  src="{{ asset('assets/img/logo_emma.jpg') }}" ></a>
+    <a class="connexion">Connexion</a>
     <br>
     <a href="{{ path('admin_create_prestation') }}">Créer une prestation</a>
 
-    <nav>
-        <ul>
+    <nav class="header-top">
+        <ul class="nav-items">
             <li class="nav-items"><a href="{{ path ('home')}}">Accueil</a></li>
-            <li><a href="{{ path('admin_apropos') }}">A propos</a></li>
-            <li><a href="{{ path('admin_list_prestations') }}">Prestation</a></li>
-            <li><a href="{{ path('admin_contact')}}">Contact</a></li>
+            <li class="nav-items"><a href="{{ path('admin_apropos') }}">A propos</a></li>
+            <li class="nav-items"><a href="{{ path('admin_list_prestations') }}">Prestation</a></li>
+            <li class="nav-items"><a href="{{ path('admin_contact')}}">Contact</a></li>
             <li class="nav-items"><a href="{{ path('admin_reservation') }}">Prendre rendez-vous</a></li>
             <li class="nav-items"><a href="{{ path('admin_liste_reservation') }}">Liste des rendez-vous</a></li>
         </ul>
@@ -36,8 +36,8 @@
     {% block body %}
     {% endblock %}
 </main>
-<footer>
-    <img class="logo" src="{{ asset('assets/img/logo_emma.jpg') }}">
+<footer class="footer">
+{#    <a href="{{ path ('home')}}"><img class="logo-footer" src="{{ asset('assets/img/logo_emma.jpg') }}"></a>#}
 </footer>
 {% block js %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>

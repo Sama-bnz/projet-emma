@@ -12,15 +12,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
 </head>
     <body>
-    <header>
-        <img class="logo" src="{{ asset('assets/img/logo_emma.jpg') }}">
-        <a href="">Connexion</a>
-        <nav>
-            <ul>
-                <li><a href="{{ path ('home')}}">Accueil</a></li>
-                <li><a href="{{ path('admin_apropos') }}">A propos</a></li>
+    <header class="hautpage">
+        <a href="{{ path ('home')}}"> <img class="logo-header"  src="{{ asset('assets/img/logo_emma.jpg') }}" ></a>
+        <a class="connexion" href="">Connexion</a>
+        <nav class="header-top">
+            <ul class="nav-items">
+                <li class="nav-items"><a href="{{ path ('home')}}">Accueil</a></li>
+                <li class="nav-items"><a href="{{ path('admin_apropos') }}">A propos</a></li>
                 <li class="nav-items"><a href="{{ path('admin_list_prestations') }}">Prestation</a></li>
-                <li><a href="{{ path('admin_contact')}}">Contact</a></li>
+                <li class="nav-items"><a href="{{ path('admin_contact')}}">Contact</a></li>
                 <li class="nav-items"><a href="{{ path('admin_reservation') }}">Prendre rendez-vous</a></li>
             </ul>
         </nav>
@@ -30,8 +30,8 @@
 
         {% block body %}
         {% endblock %}
-        <footer>
-            <img class="logo" src="{{ asset('assets/img/logo_emma.jpg') }}">
+        <footer class="footer">
+{#            <img class="logo-footer" src="{{ asset('assets/img/logo_emma.jpg') }}">#}
         </footer>
         {% block js %}
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>

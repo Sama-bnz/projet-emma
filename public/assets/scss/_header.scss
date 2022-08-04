@@ -1,0 +1,24 @@
+.logo-header{
+  width: 100px;
+}
+
+.connexion{
+  display: flex;
+  justify-content: flex-start;
+}
+
+.header-top {
+  display: flex;
+  justify-content: flex-end;
+  //background-color: lightpink;
+}
+.hautpage{
+  background: linear-gradient(to right,pink,orange);
+}
+
+.nav-items {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 15px;
+}

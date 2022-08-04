@@ -3,13 +3,16 @@
 namespace App\Controller\admin;
 
 use App\Entity\Prestation;
+use App\Form\BookType;
 use App\Form\PrestationType;
+use App\Repository\BookRepository;
 use App\Repository\CategoryPrestationRepository;
 use App\Repository\PrestationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class AdminPrestationController extends AbstractController
 {
@@ -70,8 +73,6 @@ class AdminPrestationController extends AbstractController
 
 
 
-
-
     /**
      * @Route("/admin/create/prestation", name="admin_create_prestation")
      */
@@ -105,6 +106,40 @@ class AdminPrestationController extends AbstractController
 
         return $this->render("admin/create_prestation.html.twig", [
             'form' => $form->createView()
+        ]);
+    }
+
+
+    /**
+     * @Route("/admin/update/prestation/{id}", name="admin_update_prestation")
+     */
+    public function updatePrestation($id, PrestationRepository  $prestationRepository, EntityManagerInterface $entityManager, Request $request, SluggerInterface $slugger)
+    {
+        //Avec le repository je selectionne un book en fonction de l'ID
+        $prestation = $prestationRepository->find($id);
+
+//        j'ai utilisé la ligne de cmd php bin/console make:form pour créer une classe symfony qui va contenir le "plan" de formulaire afin de créer les articles. C'est la classe BookType
+
+        $form = $this->createForm(PrestationType::class, $prestation);
+
+        //On donne à la variable qui contient le formulaire une instance de la classe Request pour que le formulaire puisse récuperer tout les données des inputs et faire les setters sur $article automatiquement.
+        //Mon formulaire est maintenant capable de recuperer et stocker les infos
+        $form->handleRequest($request);
+
+        //Si le formulaire à été posté et que les données sont valide
+        if ($form->isSubmitted() && $form->isValid()) {
+            //On enregistre le book dans la BDD
+            $entityManager->persist($prestation);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'La prestation as bien été modifiée!');
+        }
+
+        //j'affiche mon twig en lui passant une variable form qui contient la view du formulaire
+
+        return $this->render("admin/update_prestation.html.twig", [
+            'form' => $form->createView(),
+            'prestation' => $prestation
         ]);
     }
 }

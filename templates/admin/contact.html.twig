@@ -5,16 +5,16 @@
 {% endblock %}
 
 {% block header %}
-    <header>
-        <img class="logo" src="{{ asset('assets/img/logo_emma.jpg') }}">
-        <a href="">Connexion</a>
+    <header class="hautpage">
+        <a href="{{ path ('home')}}"> <img class="logo-header"  src="{{ asset('assets/img/logo_emma.jpg') }}" ></a>
+        <a class="connexion" href="">Connexion</a>
         <a href="{{ path('admin_create_prestation') }}">Créer une prestation</a>
 
-        <nav>
-            <ul>
+        <nav class="header-top">
+            <ul class="nav-items">
                 <li class="nav-items"><a href="{{ path ('home')}}">Accueil</a></li>
-                <li><a href="{{ path('admin_apropos') }}">A propos</a></li>
-                <li class="nav-items"><a href="">Prestation</a></li>
+                <li class="nav-items"><a href="{{ path('admin_apropos') }}">A propos</a></li>
+                <li class="nav-items"><a href="{{ path('admin_list_prestations') }}">Prestation</a></li>
                 <li class="nav-items"><a href="{{ path('admin_reservation') }}">Prendre rendez-vous</a></li>
                 <li class="nav-items"><a href="{{ path('admin_liste_reservation') }}">Liste des rendez-vous</a></li>
             </ul>
@@ -25,7 +25,7 @@
 {% block body %}
 
 <h1>Emplacement</h1>
-<img class="image" src="{{ asset('assets/img/emplacement_emma.png') }}">
+<img class="carte" src="{{ asset('assets/img/emplacement_emma.png') }}">
 <br>
 <br>
     <h1>Contactez moi par téléphone</h1>
