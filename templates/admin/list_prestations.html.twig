@@ -27,19 +27,32 @@
 
         <h1>{{ category.name }}</h1>
 
-        {% for type in category.type %}
-            <h3>{{ type.name }}</h3>
-            <p>{{ type.description }}</p>
-            <p>{{ type.duringtime|date('H:i') }}</p>
-            <p>{{ type.price }}</p>
-        {% endfor %}
+{#        {% for type in category.type %}#}
+{#            <h3>{{ type.name }}</h3>#}
+{#            <p>{{ type.description }}</p>#}
+{#            <p>{{ type.duringtime|date('H:i') }}</p>#}
+{#            <p>{{ type.price }}</p>#}
+{#        {% endfor %}#}
         <article>
-            <a href="{{ path('admin_show_prestation',{'id':category.id}) }}">En savoir plus sur la prestation</a>
+            {% if category.id == 1 %}
+            <a href="{{ path('admin_show_prestation',{'id':category.id}) }}"><img src="{{ asset('assets/img/soin-corps.jpg')}}"></a>
             <br>
         <a class="lien" href="{{ path ('admin_update_prestation',{'id':category.id })}}">Voulez-vous modifié cette prestation? </a>
             <br>
         <a class="lien" href="{{ path ('admin_delete_prestation',{'id':category.id })}}">Voulez-vous supprimé cette prestation ? </a>
-
-    </article>
+            {% endif %}
+            {% if category.id == 2 %}
+            <a href="{{ path('admin_show_prestation',{'id':category.id}) }}"><img src="{{ asset('assets/img/beaute-mains-pieds.jpg')}}"></a>
+            {% endif %}
+            {% if category.id == 3 %}
+                <a href="{{ path('admin_show_prestation',{'id':category.id}) }}"><img src="{{ asset('assets/img/soin_visage.jpg')}}"></a>
+            {% endif %}
+            {% if category.id == 4 %}
+                <a href="{{ path('admin_show_prestation',{'id':category.id}) }}"><img src="{{ asset('assets/img/semi_permanent.jpeg')}}"></a>
+            {% endif %}
+            {% if category.id == 5 %}
+                <a href="{{ path('admin_show_prestation',{'id':category.id}) }}"><img src="{{ asset('assets/img/epilation.jpg')}}"></a>
+            {% endif %}
+        </article>
     {% endfor %}
 {% endblock %}
