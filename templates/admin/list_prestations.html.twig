@@ -43,15 +43,31 @@
             {% endif %}
             {% if category.id == 2 %}
             <a href="{{ path('admin_show_prestation',{'id':category.id}) }}"><img src="{{ asset('assets/img/beaute-mains-pieds.jpg')}}"></a>
+                <br>
+                <a class="lien" href="{{ path ('admin_update_prestation',{'id':category.id })}}">Voulez-vous modifié cette prestation? </a>
+                <br>
+                <a class="lien" href="{{ path ('admin_delete_prestation',{'id':category.id })}}">Voulez-vous supprimé cette prestation ? </a>
             {% endif %}
             {% if category.id == 3 %}
                 <a href="{{ path('admin_show_prestation',{'id':category.id}) }}"><img src="{{ asset('assets/img/soin_visage.jpg')}}"></a>
+                <br>
+                <a class="lien" href="{{ path ('admin_update_prestation',{'id':category.id })}}">Voulez-vous modifié cette prestation? </a>
+                <br>
+                <a class="lien" href="{{ path ('admin_delete_prestation',{'id':category.id })}}">Voulez-vous supprimé cette prestation ? </a>
             {% endif %}
             {% if category.id == 4 %}
                 <a href="{{ path('admin_show_prestation',{'id':category.id}) }}"><img src="{{ asset('assets/img/semi_permanent.jpeg')}}"></a>
+                <br>
+                <a class="lien" href="{{ path ('admin_update_prestation',{'id':category.id })}}">Voulez-vous modifié cette prestation? </a>
+                <br>
+                <a class="lien" href="{{ path ('admin_delete_prestation',{'id':category.id })}}">Voulez-vous supprimé cette prestation ? </a>
             {% endif %}
             {% if category.id == 5 %}
                 <a href="{{ path('admin_show_prestation',{'id':category.id}) }}"><img src="{{ asset('assets/img/epilation.jpg')}}"></a>
+                <br>
+                <a class="lien" href="{{ path ('admin_update_prestation',{'id':category.id })}}">Voulez-vous modifié cette prestation? </a>
+                <br>
+                <a class="lien" href="{{ path ('admin_delete_prestation',{'id':category.id })}}">Voulez-vous supprimé cette prestation ? </a>
             {% endif %}
         </article>
     {% endfor %}
