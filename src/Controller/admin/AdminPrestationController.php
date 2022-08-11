@@ -3,9 +3,7 @@
 namespace App\Controller\admin;
 
 use App\Entity\Prestation;
-use App\Form\BookType;
 use App\Form\PrestationType;
-use App\Repository\BookRepository;
 use App\Repository\CategoryPrestationRepository;
 use App\Repository\PrestationRepository;
 use Doctrine\ORM\EntityManagerInterface;

@@ -8,40 +8,49 @@
     {% block title %}
         <title>Acceuil</title>
     {% endblock %}
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+
 </head>
 <body>
-{% block header %}
-<header class="hautpage">
-    <a href="{{ path ('home')}}"> <img class="logo-header"  src="{{ asset('assets/img/logo_emma.jpg') }}" ></a>
-    <a class="connexion">Connexion</a>
-    <br>
-    <a href="{{ path('admin_create_prestation') }}">Créer une prestation</a>
-
-    <nav class="header-top">
-        <ul class="nav-items">
-            <li class="nav-items"><a href="{{ path ('home')}}">Accueil</a></li>
-            <li class="nav-items"><a href="{{ path('admin_apropos') }}">A propos</a></li>
-            <li class="nav-items"><a href="{{ path('admin_list_prestations') }}">Prestation</a></li>
-            <li class="nav-items"><a href="{{ path('admin_contact')}}">Contact</a></li>
-            <li class="nav-items"><a href="{{ path('admin_reservation') }}">Prendre rendez-vous</a></li>
-            <li class="nav-items"><a href="{{ path('admin_liste_reservation') }}">Liste des rendez-vous</a></li>
-        </ul>
-    </nav>
-</header>
-{% endblock %}
-<main>
-
-    {% block body %}
+{% block body %}
+    <header class="hautpage">
+        {% block header %}
+            <a href="{{ path ('home')}}"> <img class="logo-header"  src="{{ asset('assets/img/logo_emma.jpg') }}" ></a>
+            {% if app.session.started %}
+            <a href="{{ path('app_logout') }}" class="connexion">Deconnexion</a>
+                <a href="{{ path('admin_create_prestation') }}">Créer une prestation</a>
+            {% else %}
+            <a href="{{ path('app_login') }}" class="connexion">Connexion</a>
+            {% endif %}
+            <br>
+            <nav class="header-top">
+                <ul class="nav-items">
+                    <li class="nav-items"><a href="{{ path ('home')}}">Accueil</a></li>
+                    <li class="nav-items"><a href="{{ path('admin_apropos') }}">A propos</a></li>
+                    <li class="nav-items"><a href="{{ path('admin_list_prestations') }}">Prestation</a></li>
+                    <li class="nav-items"><a href="{{ path('admin_contact')}}">Contact</a></li>
+                    <li class="nav-items"><a href="{{ path('admin_reservation') }}">Prendre rendez-vous</a></li>
+                    <li class="nav-items"><a href="{{ path('admin_liste_reservation') }}">Liste des rendez-vous</a></li>
+                </ul>
+            </nav>
+        </header>
     {% endblock %}
-</main>
-<footer class="footer">
+
+    <main>
+        {% block main %}
+        {% endblock %}
+    </main>
+
+    <footer class="footer">
+        {% block footer %}
+        {% endblock %}
 {#    <a href="{{ path ('home')}}"><img class="logo-footer" src="{{ asset('assets/img/logo_emma.jpg') }}"></a>#}
-</footer>
+    </footer>
 {% block js %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
+{% endblock %}
 {% endblock %}
 </body>
 </html>

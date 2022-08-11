@@ -10,7 +10,7 @@
 {% block header %}
     <header>
         <a href="{{ path ('home')}}"> <img class="logo-header"  src="{{ asset('assets/img/logo_emma.jpg') }}" ></a>
-        <a class="connexion" href="">Connexion</a>
+        <a class="connexion" href="{{ path('app_login') }}">Connexion</a>
 
         <nav class="header-top">
             <ul class="nav-items">
@@ -25,7 +25,7 @@
 {% endblock %}
 
 
-{% block body %}
+{% block main %}
     <p>Ici règne la douceur, la complicité et le bien être, je vous accueille chez moi dans un espace cocooning qui vous mettra
         de suite à l'aise: Soin, épilation, massage, maquillage, il y as forcement quelques chose, qui vous rendra un peu plus heureux et serein!
         <br>
