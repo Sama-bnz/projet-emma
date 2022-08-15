@@ -1,24 +1,25 @@
-{% extends 'admin/base.html.twig' %}
+{% extends 'admin/home.html.twig' %}
 
 {% block title %}
     <title>Les Prestations</title>
 {% endblock %}
 
 {% block main %}
+    <div class="content">
     {% for category in categories %}
 
         <h1>{{ category.name }}</h1>
 
-{#        {% for type in category.type %}#}
-{#            <h3>{{ type.name }}</h3>#}
-{#            <p>{{ type.description }}</p>#}
-{#            <p>{{ type.duringtime|date('H:i') }}</p>#}
-{#            <p>{{ type.price }}</p>#}
-{#        {% endfor %}#}
+        {#        {% for type in category.type %}#}
+        {#            <h3>{{ type.name }}</h3>#}
+        {#            <p>{{ type.description }}</p>#}
+        {#            <p>{{ type.duringtime|date('H:i') }}</p>#}
+        {#            <p>{{ type.price }}</p>#}
+        {#        {% endfor %}#}
         <article>
             {% if category.id == 1 %}
-        <a class="lien" href="{{ path ('admin_update_prestation',{'id':category.id })}}">Voulez-vous modifié cette prestation? </a>
-        <a class="lien" href="{{ path ('admin_delete_prestation',{'id':category.id })}}">Voulez-vous supprimé cette prestation ? </a>
+                <a class="lien" href="{{ path ('admin_update_prestation',{'id':category.id })}}">Voulez-vous modifié cette prestation? </a>
+                <a class="lien" href="{{ path ('admin_delete_prestation',{'id':category.id })}}">Voulez-vous supprimé cette prestation ? </a>
             {% endif %}
             {% if category.id == 2 %}
                 <a class="lien" href="{{ path ('admin_update_prestation',{'id':category.id })}}">Voulez-vous modifié cette prestation? </a>
@@ -37,5 +38,6 @@
                 <a class="lien" href="{{ path ('admin_delete_prestation',{'id':category.id })}}">Voulez-vous supprimé cette prestation ? </a>
             {% endif %}
         </article>
+    </div>
     {% endfor %}
 {% endblock %}

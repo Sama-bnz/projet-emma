@@ -38,3 +38,11 @@
   text-decoration: none;
   color: lightseagreen;
 }
+
+.content{
+  display: flex;
+  flex-flow: wrap row;
+  max-width: 500px;
+  position: relative;
+  left: 21%;
+}
