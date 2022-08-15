@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{#{% block title %}#}
+{#    <title>{{ category.type }}</title>#}
+{#{% endblock %}#}
+
+{% block main %}
+
+    <article>
+        <h1 class="titre">{{ category.name }}</h1>
+        {% for type in category.type %}
+            <p>{{ type.name }}</p>
+            <p>{{ type.description }}</p>
+            <p>{{ type.duringtime|date('H:i') }}</p>
+            <p>{{ type.price }}</p>
+        {% endfor %}
+
+
+        <a href="{{ path('list_prestations') }}">Retour aux Prestations</a>
+
+    </article>
+{% endblock %}

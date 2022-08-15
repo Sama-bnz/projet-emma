@@ -4,28 +4,6 @@
     <title>Les Prestations</title>
 {% endblock %}
 
-{% block header %}
-    <header class="hautpage">
-        <a href="{{ path ('home')}}"> <img class="logo-header"  src="{{ asset('assets/img/logo_emma.jpg') }}" ></a>
-        {% if app.session.started %}
-            <a href="{{ path('app_logout') }}" class="connexion">Deconnexion</a>
-            <a href="{{ path('admin_create_prestation') }}">Créer une prestation</a>
-        {% else %}
-            <a href="{{ path('app_login') }}" class="connexion">Connexion</a>
-        {% endif %}
-
-        <nav class="header-top">
-            <ul class="nav-items">
-                <li class="nav-items"><a href="{{ path ('home')}}">Accueil</a></li>
-                <li class="nav-items"><a href="{{ path('admin_apropos') }}">A propos</a></li>
-                <li class="nav-items"><a href="{{ path('admin_contact')}}">Contact</a></li>
-                <li class="nav-items"><a href="{{ path('admin_reservation') }}">Prendre rendez-vous</a></li>
-                <li class="nav-items"><a href="{{ path('admin_liste_reservation') }}">Liste des rendez-vous</a></li>
-            </ul>
-        </nav>
-    </header>
-{% endblock %}
-
 {% block main %}
     {% for category in categories %}
 
@@ -39,38 +17,23 @@
 {#        {% endfor %}#}
         <article>
             {% if category.id == 1 %}
-            <a href="{{ path('admin_show_prestation',{'id':category.id}) }}"><img src="{{ asset('assets/img/soin-corps.jpg')}}"></a>
-            <br>
         <a class="lien" href="{{ path ('admin_update_prestation',{'id':category.id })}}">Voulez-vous modifié cette prestation? </a>
-            <br>
         <a class="lien" href="{{ path ('admin_delete_prestation',{'id':category.id })}}">Voulez-vous supprimé cette prestation ? </a>
             {% endif %}
             {% if category.id == 2 %}
-            <a href="{{ path('admin_show_prestation',{'id':category.id}) }}"><img src="{{ asset('assets/img/beaute-mains-pieds.jpg')}}"></a>
-                <br>
                 <a class="lien" href="{{ path ('admin_update_prestation',{'id':category.id })}}">Voulez-vous modifié cette prestation? </a>
-                <br>
                 <a class="lien" href="{{ path ('admin_delete_prestation',{'id':category.id })}}">Voulez-vous supprimé cette prestation ? </a>
             {% endif %}
             {% if category.id == 3 %}
-                <a href="{{ path('admin_show_prestation',{'id':category.id}) }}"><img src="{{ asset('assets/img/soin_visage.jpg')}}"></a>
-                <br>
                 <a class="lien" href="{{ path ('admin_update_prestation',{'id':category.id })}}">Voulez-vous modifié cette prestation? </a>
-                <br>
                 <a class="lien" href="{{ path ('admin_delete_prestation',{'id':category.id })}}">Voulez-vous supprimé cette prestation ? </a>
             {% endif %}
             {% if category.id == 4 %}
-                <a href="{{ path('admin_show_prestation',{'id':category.id}) }}"><img src="{{ asset('assets/img/semi_permanent.jpeg')}}"></a>
-                <br>
                 <a class="lien" href="{{ path ('admin_update_prestation',{'id':category.id })}}">Voulez-vous modifié cette prestation? </a>
-                <br>
                 <a class="lien" href="{{ path ('admin_delete_prestation',{'id':category.id })}}">Voulez-vous supprimé cette prestation ? </a>
             {% endif %}
             {% if category.id == 5 %}
-                <a href="{{ path('admin_show_prestation',{'id':category.id}) }}"><img src="{{ asset('assets/img/epilation.jpg')}}"></a>
-                <br>
                 <a class="lien" href="{{ path ('admin_update_prestation',{'id':category.id })}}">Voulez-vous modifié cette prestation? </a>
-                <br>
                 <a class="lien" href="{{ path ('admin_delete_prestation',{'id':category.id })}}">Voulez-vous supprimé cette prestation ? </a>
             {% endif %}
         </article>

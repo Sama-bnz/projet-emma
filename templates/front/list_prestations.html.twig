@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    <title>Les Prestations</title>
+{% endblock %}
+
+{% block main %}
+    {% for category in categories %}
+
+        <h1>{{ category.name }}</h1>
+
+        {#        {% for type in category.type %}#}
+        {#            <h3>{{ type.name }}</h3>#}
+        {#            <p>{{ type.description }}</p>#}
+        {#            <p>{{ type.duringtime|date('H:i') }}</p>#}
+        {#            <p>{{ type.price }}</p>#}
+        {#        {% endfor %}#}
+        <article>
+            {% if category.id == 1 %}
+                <a href="{{ path('show_prestation',{'id':category.id}) }}"><img src="{{ asset('assets/img/soin-corps.jpg')}}"></a>
+            {% endif %}
+            {% if category.id == 2 %}
+                <a href="{{ path('show_prestation',{'id':category.id}) }}"><img src="{{ asset('assets/img/beaute-mains-pieds.jpg')}}"></a>
+            {% endif %}
+            {% if category.id == 3 %}
+                <a href="{{ path('show_prestation',{'id':category.id}) }}"><img src="{{ asset('assets/img/soin_visage.jpg')}}"></a>
+            {% endif %}
+            {% if category.id == 4 %}
+                <a href="{{ path('show_prestation',{'id':category.id}) }}"><img src="{{ asset('assets/img/semi_permanent.jpeg')}}"></a>
+            {% endif %}
+            {% if category.id == 5 %}
+                <a href="{{ path('show_prestation',{'id':category.id}) }}"><img src="{{ asset('assets/img/epilation.jpg')}}"></a>
+            {% endif %}
+        </article>
+    {% endfor %}
+{% endblock %}

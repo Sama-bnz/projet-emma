@@ -19,7 +19,6 @@
             <a href="{{ path ('home')}}"> <img class="logo-header"  src="{{ asset('assets/img/logo_emma.jpg') }}" ></a>
             {% if app.session.started %}
             <a href="{{ path('app_logout') }}" class="connexion">Deconnexion</a>
-                <a href="{{ path('admin_create_prestation') }}">Créer une prestation</a>
             {% else %}
             <a href="{{ path('app_login') }}" class="connexion">Connexion</a>
             {% endif %}

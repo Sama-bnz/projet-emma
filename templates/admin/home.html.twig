@@ -1,0 +1,20 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block header %}
+    <div class="barreSupp">
+        <h3>Bienvenue {{ app.user.email }}</h3>
+        <a href="{{ path ('app_logout') }}">Déconnexion</a>
+    </div>
+
+    <section class="dashboard">
+        <nav class="adminNav">
+            <a class="onglet" href="{{ path('admin_create_prestation') }}">Créer une prestation</a>
+            <a class="onglet" href="{{ path('admin_list_prestations') }}">Prestations</a>
+            <a class="onglet" href="{{ path('admin_liste_reservation') }}">Liste des rendez-vous</a>
+            <a class="onglet" href="{{ path('admin_list_admins') }}">Liste des admins</a>
+        </nav>
+    </section>
+{% endblock %}
+
+{% block main %}
+{% endblock %}
