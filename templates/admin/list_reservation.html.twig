@@ -1,4 +1,4 @@
-{% extends 'admin/base.html.twig' %}
+{% extends 'admin/home.html.twig' %}
 
 {% block title %}
     <title>La liste des reservations</title>
@@ -14,6 +14,7 @@
             <br>
             <p>{{ reservation.adresseMail }}</p>
             <p>Reservation le {{ reservation.dateReservation|date('Y-m-d') }}</p>
+            <p>{{ reservation.prestation.categoryPrestation.name }}</p>
             <p>{{ reservation.prestation.name }}</p>
             <p>{{ reservation.message }}</p>
 

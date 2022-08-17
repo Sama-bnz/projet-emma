@@ -13,7 +13,6 @@
 .adminNav{
   display: flex;
   flex-direction: column;
-  width: 20%;
   height: 100vh;
   border-right: 1px solid black;
   background-color: whitesmoke;
@@ -21,7 +20,7 @@
 
 .dashboard{
   position: fixed;
-  width: 100%;
+  width: 20%;
 }
 
 .onglet{
@@ -30,6 +29,19 @@
   font-weight: bold;
   color: orangered;
   padding: 3%;
+}
+.ongletAdmin{
+  width: 100%;
+  text-decoration: none;
+  font-weight: bold;
+  color: orangered;
+  margin: 2%;
+}
+.ongletAdmin:hover{
+  border: 1px solid lightseagreen;
+  background-color: ghostwhite;
+  text-decoration: none;
+  color: lightseagreen;
 }
 
 .onglet:hover{

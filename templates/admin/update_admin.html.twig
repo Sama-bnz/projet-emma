@@ -1,0 +1,20 @@
+{% extends 'admin/home.html.twig'%}
+
+{% block main %}
+    <div class="register content">
+    <h1 class="text">Modifier un Admin</h1>
+    <div class="">
+
+    {{ form_start(form) }}
+
+    {{ form_label(form.email) }}
+    {{ form_widget(form.email, {'label' : "Email"}) }}
+    {{ form_errors(form.email) }}
+
+    {{ form_widget(form.password) }}
+    {{ form_errors(form.password) }}
+
+{#    <button type="submit" class="connect">Enregistrer</button>#}
+    {{ form_end(form) }}
+
+{% endblock %}
