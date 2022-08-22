@@ -29,13 +29,13 @@ class AppAdminAuthenticator extends AbstractLoginFormAuthenticator
 
     public function authenticate(Request $request): Passport
     {
-        $email = $request->request->get('email', '');
-
+//        Je change les parametres de requetes (username-password et csrftoken) pour qu'elles correspondent à mon formulaire'
+        $email = $request->request->get('_username', '');
         $request->getSession()->set(Security::LAST_USERNAME, $email);
 
         return new Passport(
             new UserBadge($email),
-            new PasswordCredentials($request->request->get('password', '')),
+            new PasswordCredentials($request->request->get('_password', '')),
             [
                 new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token')),
             ]
@@ -47,14 +47,22 @@ class AppAdminAuthenticator extends AbstractLoginFormAuthenticator
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
-
-        // For example:
-        return new RedirectResponse($this->urlGenerator->generate('admin_list_prestations'));
-//        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+//        On recupere ensuite le user et on le redirige vers la route qui correspond à son role
+        $user = $token->getUser();
+        if(in_array("ROLE_ADMIN", $user->getRoles())){
+            return new RedirectResponse($this->urlGenerator->generate('admin_dashboard'));
+        }
+        return new RedirectResponse($this->urlGenerator->generate('home'));
     }
 
     protected function getLoginUrl(Request $request): string
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
+    }
+
+    public function supports(Request $request): bool
+    {
+//        Afin d'etre sur que l'authenticator reconnaisse bien l'URL de login :'
+        return $request->isMethod("POST") && $this->getLoginUrl($request) === $request->getRequestUri();
     }
 }

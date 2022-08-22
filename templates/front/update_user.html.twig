@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <div class="register content">
+    <h1 class="text">Modifier votre compte</h1>
+    <div class="">
+
+    {{ form_start(form) }}
+
+    {{ form_widget(form.password) }}
+    {{ form_errors(form.password) }}
+
+    {#    <button type="submit" class="connect">Enregistrer</button>#}
+    {{ form_end(form) }}
+
+    <a href="{{ path('delete_user',{'id':app.user.id}) }}" class="connexion">Supprimer votre compte</a>
+
+
+{% endblock %}

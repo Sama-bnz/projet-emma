@@ -8,7 +8,7 @@ security:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
-                class: App\Entity\Admin
+                class: App\Entity\User
                 property: email
         # used to reload user from session & other features (e.g. switch_user)
         # used to reload user from session & other features (e.g. switch_user)
@@ -20,12 +20,12 @@ security:
         main:
             lazy: true
             provider: app_user_provider
-            form_login:
-                login_path: app_login
-                check_path: app_login
+
             logout:
                 path: app_logout
                 # where to redirect after logout
+#                Je met en place un custom authenticator afin de créer la possibilité de direction vers deux route différentes (route admin ou route user)
+            custom_authenticator: App\Security\AppAdminAuthenticator
                 # target: app_any_route
 
             # activate different ways to authenticate

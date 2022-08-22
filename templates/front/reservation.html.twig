@@ -6,34 +6,32 @@
 
 {% block main %}
     <h1>Prendre rendez-vous</h1>
-    <br>
-    <br>
 
-    <div class="form-group">
+    <div class="form_resa">
     {#        {{ form(form) }}#}
-    {{ form_start(form) }}
+    {{ form_start(form, {'attr':{'class': 'taille_formulaire' }}) }}
 
-    {{ form_label(form.nom, 'Nom',{'label_attr':{'class': 'form-label' }}) }}
+    {{ form_label(form.nom, 'Nom',{'label_attr':{'class': 'taille_formulaire' }}) }}
     {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
     {{ form_errors(form.nom) }}
 
-    {{ form_label(form.prenom, 'Prénom',{'label_attr':{'class': 'form-label'}}) }}
+    {{ form_label(form.prenom, 'Prénom',{'label_attr':{'class': 'taille_formulaire'}}) }}
     {{ form_widget(form.prenom, {'attr':{'class': 'form-control'}}) }}
     {{ form_errors(form.prenom) }}
 
-    {{ form_label(form.adresseMail, 'Adresse Mail',{'label_attr':{'class':'form-label'}}) }}
+    {{ form_label(form.adresseMail, 'Adresse Mail',{'label_attr':{'class':'taille_formulaire'}}) }}
     {{ form_widget(form.adresseMail, {'attr':{'class': 'form-control'}}) }}
     {{ form_errors(form.adresseMail) }}
 
-    {{ form_label(form.telephone, 'Numéro de télephone',{'label_attr':{'class':'form-label'}}) }}
+    {{ form_label(form.telephone, 'Numéro de télephone',{'label_attr':{'class':'taille_formulaire'}}) }}
     {{ form_widget(form.telephone, {'attr':{'class': 'form-control'}}) }}
     {{ form_errors(form.telephone) }}
 
-    {{ form_label(form.codePostal, 'Code postal',{'label_attr':{'class':'form-label'}}) }}
+    {{ form_label(form.codePostal, 'Code postal',{'label_attr':{'class':'taille_formulaire'}}) }}
     {{ form_widget(form.codePostal, {'attr':{'class': 'form-control'}}) }}
     {{ form_errors(form.codePostal) }}
 
-    {{ form_label(form.date_reservation, 'Choisissez la date',{'label_attr':{'class':'form-label'}}) }}
+    {{ form_label(form.date_reservation, 'Choisissez la date',{'label_attr':{'class':'taille_formulaire'}}) }}
     {{ form_widget(form.date_reservation, {'attr':{'class': 'form-control'}}) }}
     {{ form_errors(form.date_reservation) }}
 

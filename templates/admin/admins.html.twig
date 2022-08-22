@@ -5,18 +5,18 @@
 
     <div>
         {#            Pour chaque admin parmis les admins#}
-        <h2>Liste des Admins</h2>
-        {% for admin in admins %}
+        <h2>Liste des Utilisateurs</h2>
+        {% for user in users %}
             <div class="ContentAdmin">
-                <h2 class="titre">{{ admin.email }}</h2>
-                {% for role in admin.roles %}
+                <h2 class="titre">{{ user.email }}</h2>
+                {% for role in user.roles %}
                     <span>{{ role }} | </span>
                 {% endfor %}
             </div>
         {# Liens pour la modification d'un admin#}
-        <a class="ongletAdmin" href="{{ path('admin_update',{'id': admin.id}) }}">Modifier un admin</a>
+        <a class="ongletAdmin" href="{{ path('admin_update',{'id': user.id}) }}">Modifier un {% if 'ROLE_ADMIN' in user.roles %}admin {% else %}user {% endif %}</a>
 {#        Lien pour la suppression d'un admin#}
-        <a class="ongletAdmin" href="{{ path('admin_delete',{'id': admin.id}) }}">Supprimer un admin</a>
+        <a class="ongletAdmin" href="{{ path('admin_delete',{'id': user.id}) }}">Supprimer un {% if 'ROLE_ADMIN' in user.roles%}admin {% else %}user {% endif %}</a>
     </div>
         {% endfor %}
 
