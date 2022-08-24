@@ -1,0 +1,12 @@
+.totalprestation{
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.prestation1{
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+}

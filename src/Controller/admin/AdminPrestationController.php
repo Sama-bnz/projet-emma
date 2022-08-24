@@ -46,25 +46,20 @@ class AdminPrestationController extends AbstractController
 
 
     /**
-     * @Route("admin/delete/prestation", name="admin_delete_prestation")
+     * @Route("admin/delete/prestation{id}", name="admin_delete_prestation")
      */
     public function deletePrestation(PrestationRepository $prestationRepository, $id, EntityManagerInterface $entityManager)
     {
-//On supprime un auteur à l'aide de son id
-        //Mélange de ArticleRepository pour le sélectionner puis EntityManager pour le supprimer.
-
         {
             $prestation = $prestationRepository->find($id);
 
             if (!is_null($prestation)) {
                 $entityManager->remove($prestation);
                 $entityManager->flush();
-                $this->addFlash('success', "Votre prestation as bien été supprimé");
-                return $this->redirectToRoute('admin_list_prestation');
-
+                return $this->redirectToRoute('admin_dashboard');
             } else {
                 $this->addFlash('success', "La prestation as déja été supprimé");
-                return $this->redirectToRoute('admin_list_prestation');
+                return $this->redirectToRoute('admin_list_prestations');
             }
         }
     }
@@ -131,6 +126,7 @@ class AdminPrestationController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'La prestation as bien été modifiée!');
+            return $this->redirectToRoute('admin_dashboard');
         }
 
         //j'affiche mon twig en lui passant une variable form qui contient la view du formulaire

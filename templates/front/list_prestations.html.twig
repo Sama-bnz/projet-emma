@@ -5,8 +5,10 @@
 {% endblock %}
 
 {% block main %}
+    <div class="totalprestation">
     {% for category in categories %}
 
+        <div class="prestation1">
         <h1>{{ category.name }}</h1>
 
         {#        {% for type in category.type %}#}
@@ -15,7 +17,6 @@
         {#            <p>{{ type.duringtime|date('H:i') }}</p>#}
         {#            <p>{{ type.price }}</p>#}
         {#        {% endfor %}#}
-        <div class="prestation1">
             {% if category.id == 1 %}
                 <a href="{{ path('show_prestation',{'id':category.id}) }}"><img class="imgPrestation" src="{{ asset('assets/img/soin-corps.jpg')}}"></a>
             {% endif %}
@@ -33,4 +34,5 @@
             {% endif %}
         </div>
     {% endfor %}
+    </div>
 {% endblock %}

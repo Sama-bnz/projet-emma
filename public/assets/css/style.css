@@ -124,6 +124,12 @@ p {
   right: 10px;
 }
 
+.footer {
+  background-color: #966c0d;
+  height: 200px;
+  margin-top: 20px;
+}
+
 .apropos {
   display: flex;
   width: 90vw;
@@ -153,6 +159,7 @@ p {
 
 .imgPrestation {
   width: 300px;
+  object-fit: cover;
 }
 
 body {
@@ -308,6 +315,23 @@ span {
 .taille_formulaire {
   width: 60vw;
   display: inline-block;
+}
+
+.totalprestation {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.prestation1 {
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+}
+
+.reservation {
+  margin-top: 10px;
 }
 
 /*# sourceMappingURL=style.css.map */

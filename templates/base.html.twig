@@ -35,9 +35,6 @@
                 <a href="{{ path('app_login') }}" class="connexion">Connexion</a>
                 <a href="{{ path('create_user') }}" class="connexion">Inscription</a>
             </div>
-
-
-
         {% endif %}
 
         </header>
@@ -55,6 +52,9 @@
 </body>
     <footer class="footer">
         {% block footer %}
+            <p>Mentions légales</p>
+            <p>Copyright 2022</p>
+            <p>Fais par : Benmezded Thomas</p>
         {% endblock %}
         {#    <a href="{{ path ('home')}}"><img class="logo-footer" src="{{ asset('assets/img/logo_emma.jpg') }}"></a>#}
     </footer>
