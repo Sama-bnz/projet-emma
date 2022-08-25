@@ -10,3 +10,72 @@
   width: 50%;
   flex-direction: column;
 }
+
+.showsolo{
+  position: relative;
+  &::after{
+    content:'';
+    position: absolute;
+    bottom:-5px;
+    width:50%;
+    left:50%;
+    transform: translateX(-50%);
+    border-top:solid 1px black;
+  }
+  h2{
+    margin-top:20px
+  }
+}
+
+.prestationSolo{
+  width:60%;
+  background:white;
+  margin: 20px auto;
+  padding:30px;
+  color:black;
+  border-radius: 10px;
+  position:relative;
+  h1{
+    font-family: 'Great Vibes', cursive;
+    font-size:3.5rem;
+    position: relative;
+    &::after{
+      content:'';
+      position: absolute;
+      bottom:-5px;
+      width:30%;
+      left:50%;
+      transform: translateX(-50%);
+      border-top:solid 1px black;
+    }
+  }
+  h2{
+    font-family: 'Great Vibes', cursive;
+    font-size:2rem;
+    position: relative;
+  }
+  &::after{
+    content:'';
+    width:150px;
+    height:150px;
+    position: absolute;
+    top:-75px;
+    right:-75px;
+    background-image: url("../img/imgFleur.png");
+    background-size: cover;
+    background-position: center;
+  }
+  &::before{
+    content:'';
+    width:150px;
+    height:150px;
+    position: absolute;
+    bottom:-75px;
+    left:-75px;
+    background-image: url("../img/imgFleur.png");
+    background-size: cover;
+    background-position: center;
+
+  }
+}
+

@@ -6,13 +6,16 @@
 
 {% block main %}
 
-    <article>
+{#    prestation{{ category.id }} a ajouter dans la classe #}
+    <article class="prestationSolo ">
         <h1 class="titre">{{ category.name }}</h1>
         {% for type in category.type %}
-            <p>{{ type.name }}</p>
+        <div class="showsolo">
+            <h2>{{ type.name }}</h2>
             <p>{{ type.description }}</p>
-            <p>{{ type.duringtime|date('H:i') }}</p>
-            <p>{{ type.price }}</p>
+            <p>Durée de la prestation : {{ type.duringtime|date('H:i') }} min</p>
+            <p>{{ type.price }} €</p>
+        </div>
         {% endfor %}
 
 

@@ -8,11 +8,14 @@
 
     <article>
         <h1 class="titre">{{ category.name }}</h1>
+
         {% for type in category.type %}
+            <div class="showsolo">
                 <p>{{ type.name }}</p>
                 <p>{{ type.description }}</p>
                 <p>{{ type.duringtime|date('H:i') }}</p>
                 <p>{{ type.price }}</p>
+            </div>
         {% endfor %}
 
 

@@ -6,12 +6,12 @@
 
 
 {% block main %}
+    <div class="resa">
     {% for reservation in reservations %}
 
         <article class="reservations">
             <h1 class="nom">{{ reservation.nom }}</h1>
             <h2 class="prenom">{{ reservation.prenom }}</h2>
-            <br>
             <p>{{ reservation.adresseMail }}</p>
             <p>Reservation le {{ reservation.dateReservation|date('Y-m-d') }}</p>
             <p>{{ reservation.prestation.categoryPrestation.name }}</p>
@@ -28,4 +28,5 @@
 
         </article>
     {% endfor %}
+    </div>
 {% endblock %}
