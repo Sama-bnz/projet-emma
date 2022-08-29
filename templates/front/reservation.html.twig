@@ -4,6 +4,12 @@
     <title>Prendre rendez-vous avec moi</title>
 {% endblock %}
 
+{% block css %}
+    <link rel="stylesheet" href="{{ asset('assets/css/datepicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/jquery.timepicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/jquery.datetimepicker.css') }}">
+{% endblock %}
+
 {% block main %}
     <h1>Prendre rendez-vous</h1>
 
@@ -35,6 +41,10 @@
     {{ form_widget(form.date_reservation, {'attr':{'class': 'form-control'}}) }}
     {{ form_errors(form.date_reservation) }}
 
+    {{ form_label(form.heure_reservation, 'Choisissez l\'heure',{'label_attr':{'class':'taille_formulaire jsdate'}}) }}
+    {{ form_widget(form.heure_reservation, {'attr':{'class': 'form-control'}}) }}
+    {{ form_errors(form.heure_reservation) }}
+
     {{ form_label(form.prestation, 'Choisissez la prestation',{'label_attr':{'class':'form-label'}}) }}
     {{ form_widget(form.prestation, {'attr':{'class': 'form-control'}}) }}
     {{ form_errors(form.prestation) }}
@@ -45,4 +55,61 @@
 
     {{ form_widget(form.valider, {'attr':{'class': 'reservation btn-primary'}}) }}
     {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block js %}
+{#    Librairies JS qui vont permettres d'aider pour le DATETIMEPICKERS#}
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+    <script src="{{ asset('assets/js/datepicker.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.timepicker.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.datetimepicker.full.js') }}"></script>
+    {# Defer permet de retarder l'execution du script jusqu'à ce que la page soit chargée #}
+    <script defer>
+        // J'initialise un tableau des jours à désactiver dans me calendrier'
+        let toDisable = [];
+        // On convertit les dates du format PHP vers le format JS
+        {% for date in disabledDates %}
+            toDisable.push(new Date(Number({{ date.timestamp }}) * 1000));
+        {% endfor %}
+        // Initialisation du datePIcker (c'est à dire le choix du jour de reservation')
+        const datePicker = datepicker('#reservation_date_reservation', {
+            formatter: (input, date, instance) => {
+                // This will display the date as `1/1/2019`.
+                input.value = date.toDateString()
+            },
+            // Avoir le calendrier qui commence le lundi
+            startDay: 1,
+            onSelect: instance => {
+                // Show which date was select
+            },
+            // Permet de desactiver tout les week-end de l'année'
+            noWeekends: true,
+            // Tableau des dates à desactiver
+            disabledDates: toDisable
+        });
+        // TimePicker
+        $('#reservation_heure_reservation').timepicker({
+            //disableTimeRanges: [['12:00', '10:00'], ['18:00', '23:59']]
+            minTime: "10:00",
+            maxTime: "18:00",
+            timeFormat: 'G:i',
+            step: 10
+        });
+        /*$('#reservation_date_reservation').datetimepicker({
+            format: 'Y-m-d H:i',
+            inline: true,
+            sideBySide: true,
+            disabledWeekDays: [0, 6],
+            dayOfWeekStart: 1,
+            formatDate: 'Y-m-d H:i',
+            formatTime: 'H:i',
+            disabledDates: ['2022-08-30 15:00']
+
+
+        });*/
+    </script>
 {% endblock %}

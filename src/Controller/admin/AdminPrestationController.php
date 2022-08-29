@@ -56,7 +56,7 @@ class AdminPrestationController extends AbstractController
             if (!is_null($prestation)) {
                 $entityManager->remove($prestation);
                 $entityManager->flush();
-                return $this->redirectToRoute('admin_dashboard');
+                return $this->redirectToRoute('admin_list_prestations');
             } else {
                 $this->addFlash('success', "La prestation as déja été supprimé");
                 return $this->redirectToRoute('admin_list_prestations');
@@ -87,14 +87,12 @@ class AdminPrestationController extends AbstractController
         //Si le formulaire à été posté et que les données sont valide
         if ($form->isSubmitted() && $form->isValid()) {
 
-
             //On enregistre le book dans la BDD
             $entityManager->persist($prestation);
             $entityManager->flush();
 
             $this->addFlash('success', 'La prestation as bien été créer');
         }
-
         //j'affiche mon twig en lui passant une variable form qui contient la view du formulaire
 
         return $this->render("admin/create_prestation.html.twig", [
@@ -106,16 +104,16 @@ class AdminPrestationController extends AbstractController
     /**
      * @Route("/admin/update/prestation/{id}", name="admin_update_prestation")
      */
-    public function updatePrestation($id, PrestationRepository  $prestationRepository, EntityManagerInterface $entityManager, Request $request, SluggerInterface $slugger)
+    public function updatePrestation($id, PrestationRepository  $prestationRepository, EntityManagerInterface $entityManager, Request $request)
     {
-        //Avec le repository je selectionne un book en fonction de l'ID
+        //Avec le repository je selectionne une prestation en fonction de l'ID
         $prestation = $prestationRepository->find($id);
 
-//        j'ai utilisé la ligne de cmd php bin/console make:form pour créer une classe symfony qui va contenir le "plan" de formulaire afin de créer les articles. C'est la classe BookType
+//        j'ai utilisé la ligne de cmd php bin/console make:form pour créer une classe symfony qui va contenir le "plan" de formulaire afin de créer les articles. C'est la classe PrestationType
 
         $form = $this->createForm(PrestationType::class, $prestation);
 
-        //On donne à la variable qui contient le formulaire une instance de la classe Request pour que le formulaire puisse récuperer tout les données des inputs et faire les setters sur $article automatiquement.
+        //On donne à la variable qui contient le formulaire une instance de la classe Request pour que le formulaire puisse récuperer tout les données des inputs et faire les setters   automatiquement.
         //Mon formulaire est maintenant capable de recuperer et stocker les infos
         $form->handleRequest($request);
 

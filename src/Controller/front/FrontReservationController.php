@@ -4,6 +4,7 @@ namespace App\Controller\front;
 
 use App\Entity\Reservation;
 use App\Form\ReservationType;
+use App\Repository\ReservationRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,7 +16,7 @@ class FrontReservationController extends AbstractController
     /**
      * @Route("/reservation", name="reservation")
      */
-    public function reservation(EntityManagerInterface $entityManager,Request $request)
+    public function reservation(EntityManagerInterface $entityManager,Request $request, ReservationRepository $reservationRepository)
     {
         //Im creating an entity class reservation, my object is to create a new reservation in database
 
@@ -53,9 +54,14 @@ class FrontReservationController extends AbstractController
 
 
         $this->addFlash('success', 'Votre rendez-vous as bien été enregirstrer');
-
+        $reservations = $reservationRepository->findAll();
+        $disabledDates = [];
+        foreach ($reservations as $reservationDone) {
+            $disabledDates[] = $reservationDone->getDateReservation();
+        }
         return $this->render('front/reservation.html.twig', [
-            'form' => $form->CreateView()
+            'form' => $form->CreateView(),
+            'disabledDates' => $disabledDates
         ]);
     }
 }

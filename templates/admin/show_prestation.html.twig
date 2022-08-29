@@ -15,13 +15,15 @@
                 <p>{{ type.description }}</p>
                 <p>{{ type.duringtime|date('H:i') }}</p>
                 <p>{{ type.price }}</p>
+                <a class="lien" href="{{ path ('admin_update_prestation',{'id':type.id })}}">Voulez-vous modifié cette prestation? </a>
+                <br>
+                <a class="lien" href="{{ path ('admin_delete_prestation',{'id':type.id })}}">Voulez-vous supprimé cette prestation ? </a>
             </div>
         {% endfor %}
 
 
 {#        <a href="{{ path('admin_list_prestations') }}">Retour aux Prestations</a>#}
         <br>
-{#        <a href="{{ path ('admin_delete_book',{'id':book.id })}}">Voulez-vous supprimé ce livre? </a>#}
 
     </article>
 {% endblock %}

@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/owl.theme.default.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    {%  block css %}{% endblock %}
 </head>
 
     <header class="hautpage">
@@ -53,11 +54,51 @@
 
 
 </body>
-    <footer class="footer">
+    <footer>
         {% block footer %}
-            <p>Mentions légales</p>
-            <p>Copyright 2022</p>
-            <p>Fais par : Benmezded Thomas</p>
+        <div class="contenu-footer">
+
+            <div class="div blo footer-services">
+                <h3>Mes services</h3>
+                <ul class="liste-services">
+                    <li><a href="#">Soin du corps</a></li>
+                    <li><a href="#">Beauté des mains et des pieds</a></li>
+                    <li><a href="#">Soin du visage</a></li>
+                    <li><a href="#">Semi permanent mains et pieds</a></li>
+                    <li><a href="#">Epilation</a></li>
+                </ul>
+            </div>
+
+            <div class="bloc footer-contact">
+                <h3>Restons en contact</h3>
+                <p>0695581475</p>
+                <p>Emma.Institut@gmail.com</p>
+                <p>38 allée des castors 33500 libourne</p>
+            </div>
+
+            <div class="bloc footer-horaires">
+                <h3>Mes horaires</h3>
+                <ul class="liste-horaires">
+                    <li>✔️Lun 10h-18h</li>
+                    <li>✔️Mar 10h-18h</li>
+                    <li>✔️Mer 10h-18h</li>
+                    <li>✔️Jeu 10h-18h</li>
+                    <li>✔️Ven 10h-18h</li>
+                    <li>❌️Sam fermé</li>
+                    <li>❌️Dim fermé</li>
+                </ul>
+            </div>
+
+            <div class="bloc footer-media">
+                <h3>Mes réseaux </h3>
+                <ul class="liste-media">
+                    <li><a href="#"><img class="icone-logo" src="{{ asset('assets/img/logo_facebook.png') }}">Facebook</a></li>
+                    <li><a href="#"><img class="icone-logo" src="{{ asset('assets/img/logo_insta.jpg') }}"> Instagram</a></li>
+                    <li><a href="#"><img class="icone-logo"  src="{{ asset('assets/img/logo_ytb.jpg') }}"> Youtube</a></li>
+                </ul>
+            </div>
+
+        </div>
         {% endblock %}
         {#    <a href="{{ path ('home')}}"><img class="logo-footer" src="{{ asset('assets/img/logo_emma.jpg') }}"></a>#}
     </footer>
