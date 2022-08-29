@@ -23,13 +23,17 @@
             <a href="{{ path ('home')}}"> <img class="logo-header"  src="{{ asset('assets/img/logo_emma.jpg') }}" ></a>
         <nav class="header-top">
             <ul class="nav">
-                <li class="nav-items"><a href="{{ path ('home')}}">Accueil</a></li>
-                <li class="nav-items"><a href="{{ path('apropos') }}">A propos</a></li>
-                <li class="nav-items"><a href="{{ path('list_prestations') }}">Prestation</a></li>
-                <li class="nav-items"><a href="{{ path('contact')}}">Contact</a></li>
-                <li class="nav-items"><a href="{{ path('reservation') }}">Prendre rendez-vous</a></li>
+                <li class="nav-items first"><a href="{{ path ('home')}}">Accueil</a></li>
+                <li class="nav-items second"><a href="{{ path('apropos') }}">A propos</a></li>
+                <li class="nav-items third"><a href="{{ path('list_prestations') }}">Prestation</a></li>
+                <li class="nav-items four"><a href="{{ path('contact')}}">Contact</a></li>
+                <li class="nav-items fifth"><a href="{{ path('reservation') }}">Prendre rendez-vous</a></li>
             </ul>
+            <button class="burger">
+                <span class="bar"></span>
+            </button>
         </nav>
+
         {% if app.user %}
             <a href="{{ path('app_logout') }}" class="connexion">Deconnexion</a>
             <a href="{{ path('update_user',{'id':app.user.id}) }}" class="connexion">Modifier votre compte</a>

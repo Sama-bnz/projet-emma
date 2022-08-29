@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   box-sizing: border-box;
   margin: 0;
@@ -21,6 +22,11 @@ body {
 .connexion {
   display: flex;
   justify-content: flex-end;
+  color: whitesmoke;
+}
+.connexion:hover {
+  text-decoration: none;
+  color: #aa00b7;
 }
 
 .header-top {
@@ -113,6 +119,17 @@ body {
   margin: 50px 0;
 }
 
+/*Responsive*/
+@media screen and (max-width: 800px) {
+  .background .textWrapper {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 426px) {
+  .background .textWrapper p {
+    visibility: hidden;
+  }
+}
 .logo-footer {
   width: 100px;
   position: absolute;
@@ -232,6 +249,18 @@ footer {
   margin-left: 50px;
 }
 
+/*Responsive*/
+@media screen and (max-width: 426px) {
+  .apropos1 {
+    display: none;
+  }
+  .apropos2 {
+    display: none;
+  }
+  .text_apropos {
+    margin: 0;
+  }
+}
 .apropos1 {
   width: 300px;
   margin-bottom: 50px;
@@ -400,6 +429,12 @@ span {
   font-size: x-large;
 }
 
+/*Responsive*/
+@media screen and (max-width: 426px) {
+  .carte {
+    width: 400px;
+  }
+}
 .taille_formulaire {
   width: 60vw;
   display: inline-block;
@@ -485,9 +520,155 @@ span {
   background-position: center;
 }
 
+/*Responsive*/
+@media screen and (max-width: 800px) {
+  .totalprestation {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 426px) {
+  .totalprestation {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  h1 {
+    font-size: 20px;
+  }
+}
 .reservation {
   margin-top: 1em;
   border: 1px solid black;
+}
+
+.burger {
+  display: none;
+}
+
+/*Responsive*/
+@media screen and (max-width: 767px) {
+  /*menu caché*/
+  header {
+    position: relative;
+  }
+  header .header-top {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: block;
+  }
+  header .header-top .nav {
+    height: 0;
+    overflow: hidden;
+  }
+  /*menu ouvert apres click et ajout de la classe show-nav */
+  header .header-top.show-nav .nav {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background: #e88b89;
+    padding: 10px 50px;
+    border-radius: 15%;
+    z-index: 4000;
+    margin-top: 50px;
+    position: relative;
+  }
+  .nav-items > a {
+    display: block;
+    padding: 0;
+    font-size: 1.5rem;
+    color: whitesmoke;
+    transition: all 0.4s ease-in-out;
+  }
+  .nav-items > a:hover {
+    padding-left: 2rem;
+    letter-spacing: 5px;
+  }
+  .burger {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0;
+    width: 45px;
+    height: 45px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
+  .bar {
+    display: block;
+    width: 45px;
+    height: 4px;
+    border-radius: 3px;
+    background: whitesmoke;
+    transition: all 0.5s ease-in-out;
+  }
+  .bar::before, .bar::after {
+    content: "";
+    width: 45px;
+    height: 4px;
+    position: absolute;
+    left: 0;
+    background: whitesmoke;
+    border-radius: 3px;
+    transition: all 0.5s ease-in-out;
+  }
+  .bar::before {
+    transform: translateY(-12px);
+  }
+  .bar::after {
+    transform: translateY(12px);
+  }
+  .show-nav .bar {
+    width: 0;
+    background: transparent;
+  }
+  .show-nav .bar::before {
+    transform: rotate(45deg);
+  }
+  .show-nav .bar::after {
+    transform: rotate(-45deg);
+  }
+  .show-nav .first {
+    transition: all 1s ease-out;
+  }
+  .show-nav .second {
+    transition: all 1s ease-out;
+  }
+  .show-nav .third {
+    transition: all 1s ease-out;
+  }
+  .show-nav .four {
+    transition: all 1s ease-out;
+  }
+  .show-nav .fifth {
+    transition: all 1s ease-out;
+  }
+}
+.bar::before {
+  transform: translateY(-12px);
+}
+
+.bar::after {
+  transform: translateY(12px);
+}
+
+@media screen and (min-width: 768px) {
+  .nav-items > a::after {
+    display: block;
+    content: "";
+    width: 0;
+    height: 1px;
+    background: pink;
+    transition: width 0.4s;
+  }
+  .nav-items:hover > a::after {
+    width: 100%;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -7,6 +7,11 @@
 .connexion{
   display: flex;
   justify-content: flex-end;
+  color: whitesmoke;
+  &:hover{
+    text-decoration: none;
+    color: #aa00b7;
+  }
 }
 
 .header-top {
@@ -97,6 +102,23 @@
 
 .owl-carousel{
   margin:50px 0
+}
+
+
+/*Responsive*/
+
+@media screen and (max-width: 800px) {
+  .background .textWrapper{
+    width: 80%;
+  }
+}
+@media screen and (max-width: 426px) {
+  .background .textWrapper{
+    p{
+      visibility: hidden;
+    }
+
+  }
 }
 
 

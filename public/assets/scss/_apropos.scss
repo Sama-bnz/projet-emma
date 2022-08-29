@@ -12,3 +12,16 @@
   display: flex;
   margin-left: 50px;
 }
+/*Responsive*/
+
+@media screen and (max-width: 426px) {
+  .apropos1{
+  display: none;
+  }
+.apropos2{
+  display: none;
+}
+  .text_apropos{
+    margin: 0;
+  }
+}
