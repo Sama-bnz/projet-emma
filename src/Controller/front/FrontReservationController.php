@@ -5,7 +5,10 @@ namespace App\Controller\front;
 use App\Entity\Reservation;
 use App\Form\ReservationType;
 use App\Repository\ReservationRepository;
+use DateInterval;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -63,5 +66,35 @@ class FrontReservationController extends AbstractController
             'form' => $form->CreateView(),
             'disabledDates' => $disabledDates
         ]);
+    }
+
+    /**
+     * @Route("/reservation/existing", name="reservation_existing")
+     * @throws Exception
+     */
+    public function dejaReserve(Request $request, ReservationRepository $reservationRepository): \Symfony\Component\HttpFoundation\JsonResponse
+    {
+        $requestDay = $request->request->get('day');
+        $day = new DateTime();
+        $day->setTimestamp($requestDay/1000);
+        dump($day);
+        $dateFin = new DateTime();
+        $dateFin->setTimestamp($day->getTimestamp());
+        $dateFin->setTime(23, 59, 59);
+        $reservationsDone = $reservationRepository->getReservationDone($day,$dateFin);
+        dump($reservationsDone);
+        //date debut et fin
+        $disabledDates = [];
+        foreach($reservationsDone as $reservation){
+            $duration = $reservation->getPrestation()->getDuringTime()->format('H:i:s');
+            $parts = explode(':',$duration);
+            $dateInterval = new DateInterval('PT'.$parts[0].'H'.$parts[1].'M'.$parts[2].'S');
+            $disabledDates[] = [
+                'dateDebut' => $reservation->getDateReservation()->format('H:i'),
+                'dateFin' => $reservation->getDateReservation()->add($dateInterval)->format('H:i')
+            ];
+        }
+        dump($disabledDates);
+        return $this->json(['dates' => $disabledDates]);
     }
 }

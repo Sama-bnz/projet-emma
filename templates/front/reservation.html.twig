@@ -37,6 +37,10 @@
     {{ form_widget(form.codePostal, {'attr':{'class': 'form-control'}}) }}
     {{ form_errors(form.codePostal) }}
 
+    {{ form_label(form.prestation, 'Choisissez la prestation',{'label_attr':{'class':'form-label'}}) }}
+    {{ form_widget(form.prestation, {'attr':{'class': 'form-control'}}) }}
+    {{ form_errors(form.prestation) }}
+
     {{ form_label(form.date_reservation, 'Choisissez la date',{'label_attr':{'class':'taille_formulaire jsdate'}}) }}
     {{ form_widget(form.date_reservation, {'attr':{'class': 'form-control'}}) }}
     {{ form_errors(form.date_reservation) }}
@@ -44,10 +48,6 @@
     {{ form_label(form.heure_reservation, 'Choisissez l\'heure',{'label_attr':{'class':'taille_formulaire jsdate'}}) }}
     {{ form_widget(form.heure_reservation, {'attr':{'class': 'form-control'}}) }}
     {{ form_errors(form.heure_reservation) }}
-
-    {{ form_label(form.prestation, 'Choisissez la prestation',{'label_attr':{'class':'form-label'}}) }}
-    {{ form_widget(form.prestation, {'attr':{'class': 'form-control'}}) }}
-    {{ form_errors(form.prestation) }}
 
     {{ form_label(form.message, 'Message',{'label_attr':{'class':'form-label'}}) }}
     {{ form_widget(form.message, {'attr':{'class': 'form-control'}}) }}
@@ -71,6 +71,7 @@
     <script defer>
         // J'initialise un tableau des jours à désactiver dans me calendrier'
         let toDisable = [];
+
         // On convertit les dates du format PHP vers le format JS
         {% for date in disabledDates %}
             toDisable.push(new Date(Number({{ date.timestamp }}) * 1000));
@@ -83,13 +84,28 @@
             },
             // Avoir le calendrier qui commence le lundi
             startDay: 1,
-            onSelect: instance => {
-                // Show which date was select
+            onSelect: function() {
+                let date = this.dateSelected.getTime() - (60000 * this.dateSelected.getTimezoneOffset())
+                let body = new FormData();
+                body.append('day', date.toString());
+                fetch('/projet-emma/public/reservation/existing', { method: "POST",
+                    body: body
+                }).then((response) => {
+                    console.log(response);
+                    $('#reservation_heure_reservation').timepicker({
+                        //disableTimeRanges: [['12:00', '10:00'], ['18:00', '23:59']]
+                        disableTimeRanges: response,
+                        minTime: "10:00",
+                        maxTime: "18:00",
+                        timeFormat: 'G:i',
+                        step: 10
+                    });
+                })
             },
             // Permet de desactiver tout les week-end de l'année'
             noWeekends: true,
             // Tableau des dates à desactiver
-            disabledDates: toDisable
+            //disabledDates: toDisable
         });
         // TimePicker
         $('#reservation_heure_reservation').timepicker({
@@ -99,6 +115,8 @@
             timeFormat: 'G:i',
             step: 10
         });
+        console.log("toto");
+
         /*$('#reservation_date_reservation').datetimepicker({
             format: 'Y-m-d H:i',
             inline: true,
