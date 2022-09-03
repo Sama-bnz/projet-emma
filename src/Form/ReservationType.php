@@ -25,10 +25,11 @@ class ReservationType extends AbstractType
             ->add('telephone')
             ->add('codePostal')
             //Je donne à ma date la possibilité d'etre choisie sur un grand calendrier, on peux donc choisir jour/mois/année avec un seul bouton
-            ->add('date_reservation', DateType::class,['widget' => 'single_text', 'format' => 'EEE MMM dd YYYY', 'html5' => false, 'mapped' => false])
+            ->add('date_reservation', DateType::class,['widget' => 'single_text', 'format' => 'dd/MM/yyyy', 'input_format' => 'd/M/y', 'html5' => false, 'mapped' => false])
             ->add('heure_reservation', TimeType::class, ['widget' => 'single_text', 'mapped' => false])
             ->add('prestation',EntityType::class,['class' =>Prestation::class,'choice_label'=>'name',])
-            ->add('message',TextareaType::class)
+            //required false permet de ne pas rendre obligatoire la saisie du champ
+            ->add('message',TextareaType::class, ['required' => false])
             ->add('valider', SubmitType::class);
     }
 

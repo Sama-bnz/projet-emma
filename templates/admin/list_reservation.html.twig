@@ -13,7 +13,7 @@
             <h1 class="nom">{{ reservation.nom }}</h1>
             <h2 class="prenom">{{ reservation.prenom }}</h2>
             <p>{{ reservation.adresseMail }}</p>
-            <p>Reservation le {{ reservation.dateReservation|date('Y-m-d') }}</p>
+            <p>Reservation le {{ reservation.dateReservation|date('d-m-Y G:i') }}</p>
             <p>{{ reservation.prestation.categoryPrestation.name }}</p>
             <p>{{ reservation.prestation.name }}</p>
             <p>{{ reservation.message }}</p>
@@ -24,7 +24,7 @@
 {#            <a class="lien" href="{{ path ('admin_update_book',{'id':book.id })}}">Voulez-vous modifié les données de ce livre?? </a>#}
 {#            <br>#}
 {#            <br>#}
-            <a class="lien" href="{{ path ('admin_cancel_reservation',{'id':reservation.id })}}">Voulez-vous annulé ce rendez-vous? </a>
+            <a class="lien" href="{{ path ('admin_cancel_reservation',{'id':reservation.id })}}">Voulez-vous annuler ce rendez-vous? </a>
 
         </article>
     {% endfor %}

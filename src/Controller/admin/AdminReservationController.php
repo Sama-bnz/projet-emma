@@ -18,32 +18,27 @@ class AdminReservationController extends AbstractController
  */
     public function reservation(EntityManagerInterface $entityManager,Request $request)
     {
-        //Im creating an entity class reservation, my object is to create a new reservation in database
-
+        //Je crée une entité de la classe réservation, l'objectif est de créer une nouvelle réservation dans la BDD
         $reservation = new Reservation();
 
-        //i used "php bin/console make:form to create a symfony class, she will conteint a form plan to create form
-        //this name class is "ReservationType"
-
+        //J'utilise la ligne de code "php bin/console make:form afin de créer une classe symfony, elle contiendra un formulaire de réservation, son nom sera "ReservationType"
         $form = $this->createForm(ReservationType::class, $reservation);
 
-        //Im giving a variable who conteint a form about Request class
-
-        //My form is now avalable to handle and store the information
+        //Je crée une variable qui contient mon formulaire de la classe Request
+        //Mon formulaire est maintenant capable de capter et de stocker les informations
         $form->handleRequest($request);
 
-        //If my form is submitted and valid
+        //Si mon formulaire est posté et que les données sont valides
         if ($form->isSubmitted() && $form->isValid()) {
-            //im getting the form and i flush on database
+            //On enregistre le formulaire dans la BDD
             $reservation ->setStatut("en attente");
             $entityManager->persist($reservation);
             $entityManager->flush();
         }
-        //register the reservation in database
 
         $this->addFlash('success', 'Votre rendez-vous as bien été enregirstrer');
 
-        //I return the direction to my twig for the view
+        //On retourne vers mon twig qui représente ma vue
         return $this->render('admin/reservation.html.twig',[
         'form' => $form->CreateView()
         ]);

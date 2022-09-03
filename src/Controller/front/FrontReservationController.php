@@ -18,6 +18,7 @@ class FrontReservationController extends AbstractController
 {
     /**
      * @Route("/reservation", name="reservation")
+     * @throws Exception
      */
     public function reservation(EntityManagerInterface $entityManager,Request $request, ReservationRepository $reservationRepository)
     {
@@ -49,52 +50,69 @@ class FrontReservationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             //je recupere le formulaire et je lui ajoute le statut en attente en BDD
             $reservation->setStatut("en attente");
-            $entityManager->persist($reservation);
-            $entityManager->flush();
+            //je recupère les champs date et heure et je les assemble pour les sauvegarder en BDD
+            $day = $form->get('date_reservation')->getData();
+            $time = $form->get('heure_reservation')->getData();
+            //Je sépare l'heure et les minutes dans deux variables différentes
+            $timeSplit = preg_split('/:/', $time->format('H:i'));
+            //Je vérifie qu'on a bien deux parties
+            if(sizeof($timeSplit) == 2){
+                $hour = $timeSplit[0];
+                $minutes = $timeSplit[1];
+                //Je change l'heure de la date entrée
+                $day->setTime($hour, $minutes);
+                if($day > new DateTime()){
+                    //Puis j'affecte le résultat à reservation
+                    $reservation->setDateReservation($day);
+                    $entityManager->persist($reservation);
+                    $entityManager->flush();
+                    $this->addFlash('success', 'Votre rendez-vous a bien été enregistré');
+                } else {
+                    $this->addFlash('error', 'Un rendez-vous dans le passé ne peut pas être enregistré.');
+                }
+            }
         }
         //register the reservation in database
         //On enregistre la reservation dans la BDD
-
-
-        $this->addFlash('success', 'Votre rendez-vous as bien été enregirstrer');
-        $reservations = $reservationRepository->findAll();
-        $disabledDates = [];
-        foreach ($reservations as $reservationDone) {
-            $disabledDates[] = $reservationDone->getDateReservation();
-        }
         return $this->render('front/reservation.html.twig', [
-            'form' => $form->CreateView(),
-            'disabledDates' => $disabledDates
+            'form' => $form->CreateView()
         ]);
     }
 
     /**
+     * Je créer ma route et ma fonction déja reservé, je lui transmet les parametres request
      * @Route("/reservation/existing", name="reservation_existing")
      * @throws Exception
      */
     public function dejaReserve(Request $request, ReservationRepository $reservationRepository): \Symfony\Component\HttpFoundation\JsonResponse
     {
+        //J'utilise la variable request pour récuperer le jour que je veux traiter
         $requestDay = $request->request->get('day');
+        //ici je veux la date reçue en format date PHP
         $day = new DateTime();
         $day->setTimestamp($requestDay/1000);
-        dump($day);
         $dateFin = new DateTime();
+        //Je creer la date de fin de la journée en mettant l'heure à 23h59
         $dateFin->setTimestamp($day->getTimestamp());
         $dateFin->setTime(23, 59, 59);
+        //je vais chercher toutes les reservations de la journée (de minuit à minuit)
         $reservationsDone = $reservationRepository->getReservationDone($day,$dateFin);
-        dump($reservationsDone);
         //date debut et fin
         $disabledDates = [];
+        //Pour chaques reservation prises dans reservation
         foreach($reservationsDone as $reservation){
+            //Je recupère la durée de la prestation
             $duration = $reservation->getPrestation()->getDuringTime()->format('H:i:s');
+            //on formate la durée de la prestation
             $parts = explode(':',$duration);
             $dateInterval = new DateInterval('PT'.$parts[0].'H'.$parts[1].'M'.$parts[2].'S');
+            //on met dans un tableau l'heure de début et l'heure de fin de la prestation (date de début + la durée de la prestation)
             $disabledDates[] = [
-                'dateDebut' => $reservation->getDateReservation()->format('H:i'),
-                'dateFin' => $reservation->getDateReservation()->add($dateInterval)->format('H:i')
+                $reservation->getDateReservation()->format('H:i'),
+                $reservation->getDateReservation()->add($dateInterval)->format('H:i')
             ];
         }
-        dump($disabledDates);
+        //On renvoit le tableau dans un json de tout les créneaux reservés
         return $this->json(['dates' => $disabledDates]);
     }
 }

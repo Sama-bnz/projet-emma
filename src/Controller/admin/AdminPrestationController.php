@@ -15,10 +15,12 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class AdminPrestationController extends AbstractController
 {
     /**
+     * Cette fonction va permettre d'afficher la liste de toutes les prestations
      * @Route("/admin/list/prestations", name="admin_list_prestations")
      */
     public function listPrestation(CategoryPrestationRepository $categoryRepository)
     {
+        //FindAll permet de sélectionner tous les éléments d'une liste
         $categories = $categoryRepository->findAll();
         return $this->render('admin/list_prestations.html.twig', [
             'categories' => $categories
@@ -51,11 +53,14 @@ class AdminPrestationController extends AbstractController
     public function deletePrestation(PrestationRepository $prestationRepository, $id, EntityManagerInterface $entityManager)
     {
         {
+            //On recupère la prestation grace à son ID
             $prestation = $prestationRepository->find($id);
 
             if (!is_null($prestation)) {
+                //Grâce à l'entity manager je supprime la prestation de la liste
                 $entityManager->remove($prestation);
                 $entityManager->flush();
+                //Je redirige la vue vers la liste des prestations
                 return $this->redirectToRoute('admin_list_prestations');
             } else {
                 $this->addFlash('success', "La prestation as déja été supprimé");
@@ -119,7 +124,7 @@ class AdminPrestationController extends AbstractController
 
         //Si le formulaire à été posté et que les données sont valide
         if ($form->isSubmitted() && $form->isValid()) {
-            //On enregistre le book dans la BDD
+            //On enregistre la prestation dans la BDD
             $entityManager->persist($prestation);
             $entityManager->flush();
 

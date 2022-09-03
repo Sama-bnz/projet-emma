@@ -20,10 +20,10 @@ class UserController extends AbstractController
      */
     public function createUser(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $userPasswordHasher)
     {
-        //je créé une nouvelle instance de la classe admin
+        //je créé une nouvelle instance de la classe user
         $user = new User();
 
-        // j'affecte le rôle d'admin par défaut
+        // j'affecte le rôle user par défaut
         $user->setRoles([]);
 
         //J'appel mon gabari de formulaire à l'aide de createform

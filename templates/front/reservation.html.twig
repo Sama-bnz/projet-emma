@@ -69,65 +69,56 @@
     <script src="{{ asset('assets/js/jquery.datetimepicker.full.js') }}"></script>
     {# Defer permet de retarder l'execution du script jusqu'à ce que la page soit chargée #}
     <script defer>
-        // J'initialise un tableau des jours à désactiver dans me calendrier'
-        let toDisable = [];
-
-        // On convertit les dates du format PHP vers le format JS
-        {% for date in disabledDates %}
-            toDisable.push(new Date(Number({{ date.timestamp }}) * 1000));
-        {% endfor %}
-        // Initialisation du datePIcker (c'est à dire le choix du jour de reservation')
+        // Initialisation du datePicker (c'est à dire le choix du jour de reservation')
         const datePicker = datepicker('#reservation_date_reservation', {
+            //permet de rendre indisponible toutes les dates antérieur à l'actuelle
+            minDate: new Date(),
+            //Je formatte la date pour l'afficher à la journée actuelle
             formatter: (input, date, instance) => {
-                // This will display the date as `1/1/2019`.
-                input.value = date.toDateString()
+                input.value = date.toLocaleDateString();
             },
             // Avoir le calendrier qui commence le lundi
             startDay: 1,
+            //fonction executée à chaque choix d'une date
             onSelect: function() {
+                //On convertit la date selectionnée en format UTC et timestamp
                 let date = this.dateSelected.getTime() - (60000 * this.dateSelected.getTimezoneOffset())
+                //On créer un body dans lequel on met la date
                 let body = new FormData();
                 body.append('day', date.toString());
+                //on fais un appel ajax (appel d'une URL) pour lequel on envoi le jour formaté
                 fetch('/projet-emma/public/reservation/existing', { method: "POST",
                     body: body
+                    //.then permet d'attendre la résolution de la promesse
                 }).then((response) => {
-                    console.log(response);
-                    $('#reservation_heure_reservation').timepicker({
-                        //disableTimeRanges: [['12:00', '10:00'], ['18:00', '23:59']]
-                        disableTimeRanges: response,
-                        minTime: "10:00",
-                        maxTime: "18:00",
-                        timeFormat: 'G:i',
-                        step: 10
-                    });
-                })
+                    //Une fois qu'on as la réponse, on récupere le json
+                    response.json()
+                        //.then permet d'attendre la résolution de la promesse
+                            .then((data) => {
+                                //Une fois qu'on as le json on redefinit le timePicker pour enlever les heures déja reservées
+                                $('#reservation_heure_reservation').timepicker({
+                                    //disableTimeRanges: [['12:00', '10:00'], ['18:00', '23:59']]
+                                    disableTimeRanges: data.dates,
+                                    minTime: "10:00",
+                                    maxTime: "18:00",
+                                    timeFormat: 'G:i',
+                                    step: 10,
+                                    autohide: true
+                                });
+                            })
+                    }
+                )
             },
             // Permet de desactiver tout les week-end de l'année'
             noWeekends: true,
-            // Tableau des dates à desactiver
-            //disabledDates: toDisable
         });
         // TimePicker
         $('#reservation_heure_reservation').timepicker({
-            //disableTimeRanges: [['12:00', '10:00'], ['18:00', '23:59']]
             minTime: "10:00",
             maxTime: "18:00",
             timeFormat: 'G:i',
-            step: 10
+            step: 10,
+            autohide: true
         });
-        console.log("toto");
-
-        /*$('#reservation_date_reservation').datetimepicker({
-            format: 'Y-m-d H:i',
-            inline: true,
-            sideBySide: true,
-            disabledWeekDays: [0, 6],
-            dayOfWeekStart: 1,
-            formatDate: 'Y-m-d H:i',
-            formatTime: 'H:i',
-            disabledDates: ['2022-08-30 15:00']
-
-
-        });*/
     </script>
 {% endblock %}

@@ -20,10 +20,7 @@
                 <a class="lien" href="{{ path ('admin_delete_prestation',{'id':type.id })}}">Voulez-vous supprimé cette prestation ? </a>
             </div>
         {% endfor %}
-
-
-{#        <a href="{{ path('admin_list_prestations') }}">Retour aux Prestations</a>#}
         <br>
-
+        <a href="{{ path('admin_list_prestations') }}">Retour aux Prestations</a>
     </article>
 {% endblock %}
